@@ -1377,9 +1377,16 @@ body {
 .footer__logos-row {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: var(--space-lg);
+  align-items: flex-start;
+  gap: var(--space-xl);
   flex-wrap: wrap;
+}
+
+.footer__logo-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
 }
 
 .footer__zimba-logo-link {
