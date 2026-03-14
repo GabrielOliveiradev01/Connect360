@@ -35,6 +35,7 @@ function initHeader() {
     const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
     menuToggle.setAttribute('aria-expanded', !isExpanded);
     nav?.classList.toggle('open');
+    document.body.classList.toggle('menu-open', !isExpanded);
     document.body.style.overflow = isExpanded ? '' : 'hidden';
   });
 
@@ -44,6 +45,7 @@ function initHeader() {
       if (window.innerWidth < 1024) {
         menuToggle?.setAttribute('aria-expanded', 'false');
         nav?.classList.remove('open');
+        document.body.classList.remove('menu-open');
         document.body.style.overflow = '';
       }
     });
