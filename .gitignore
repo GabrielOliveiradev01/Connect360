@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+node_modules/
+.env
+.env.local
+Pasta XX*/
+logo-zimba_page-0001.jpg
+fix-tif.py
+/FOLHETO IMG.png
+/Document fonts/
+/vista aerea.jpg
+/connect s fundo.png
