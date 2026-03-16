@@ -84,28 +84,56 @@ function initAccordion() {
 }
 
 /**
- * Contact form
+ * Contact form - envia leads via função Netlify (evita CORS)
  */
+const LEAD_SUBMIT_URL = '/.netlify/functions/submit-lead';
+
 function initContactForm() {
   const form = document.getElementById('contact-form');
 
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const nome = form.querySelector('#nome')?.value;
-    const email = form.querySelector('#email')?.value;
-    const telefone = form.querySelector('#telefone')?.value;
+    const nome = form.querySelector('#nome')?.value?.trim();
+    const email = form.querySelector('#email')?.value?.trim();
+    const telefone = form.querySelector('#telefone')?.value?.trim();
 
     if (!nome || !email || !telefone) {
       alert('Por favor, preencha todos os campos obrigatórios.');
       return;
     }
 
-    // Aqui você pode integrar com seu backend ou serviço de formulário
-    console.log('Form submitted:', { nome, email, telefone });
-    alert('Obrigado! Entraremos em contato em breve.');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn?.textContent;
 
-    form.reset();
+    try {
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+      }
+
+      const response = await fetch(LEAD_SUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, telefone })
+      });
+
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.error || `Erro ${response.status}`);
+      }
+
+      alert('Obrigado! Entraremos em contato em breve.');
+      form.reset();
+    } catch (err) {
+      console.error('Erro ao enviar formulário:', err);
+      alert('Não foi possível enviar. Tente novamente ou entre em contato pelo WhatsApp.');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText || 'Solicitar contato';
+      }
+    }
   });
 }
 

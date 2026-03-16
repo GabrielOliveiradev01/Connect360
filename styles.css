@@ -1261,6 +1261,10 @@ body {
   transform: rotate(180deg);
 }
 
+.accordion__item[data-open] .accordion__content {
+  max-height: 300px;
+}
+
 .accordion__content {
   max-height: 0;
   overflow: hidden;
