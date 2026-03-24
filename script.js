@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initSmoothScroll();
   initCarousel();
+  initImplantacaoEditor();
 });
 
 /**
@@ -197,5 +198,35 @@ function initSmoothScroll() {
         });
       }
     });
+  });
+}
+
+/**
+ * Editor de bolinhas da implantação (arrastar e copiar coordenadas)
+ */
+function initImplantacaoEditor() {
+  const map = document.querySelector('.implantacao__map');
+  if (!map) return;
+
+  const markers = Array.from(map.querySelectorAll('.implantacao__marker'));
+  if (!markers.length) return;
+  const legendItems = Array.from(document.querySelectorAll('.implantacao__legend li[data-marker-id]'));
+
+  function highlightLegend(markerId) {
+    legendItems.forEach((item) => {
+      item.classList.toggle('is-highlight', item.dataset.markerId === markerId);
+    });
+  }
+
+  function clearLegendHighlight() {
+    legendItems.forEach((item) => item.classList.remove('is-highlight'));
+  }
+
+  markers.forEach((marker) => {
+    marker.setAttribute('draggable', 'false');
+    const markerId = marker.dataset.markerId || marker.textContent.trim();
+
+    marker.addEventListener('mouseenter', () => highlightLegend(markerId));
+    marker.addEventListener('mouseleave', clearLegendHighlight);
   });
 }

@@ -190,6 +190,10 @@ body {
   display: block;
 }
 
+.header.scrolled .header__logo img {
+  filter: brightness(0);
+}
+
 .logo {
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -458,13 +462,13 @@ body {
   font-size: 0.9rem;
   opacity: 0.95;
   white-space: nowrap;
-  align-self: flex-end;
-  margin-right: 8px;
-  margin-bottom: 2px;
+  align-self: auto;
+  margin: 2px 0 0;
+  flex-shrink: 0;
 }
 
 .hero__block-value {
-  font-size: clamp(2.1rem, 8vw, 4.8rem);
+  font-size: clamp(1.8rem, 7vw, 4rem);
   font-weight: 700;
   line-height: 1.05;
   color: #b8a291;
@@ -473,7 +477,11 @@ body {
 
 .hero__block-value-row {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  flex-wrap: nowrap;
+  min-width: 0;
 }
 
 .hero__block-title {
@@ -499,6 +507,12 @@ body {
   height: 1px;
   background: rgba(255, 255, 255, 0.55);
   margin: 2px 0;
+}
+
+@media (max-width: 480px) {
+  .hero__block-value {
+    font-size: clamp(1.65rem, 9vw, 2.4rem);
+  }
 }
 
 
@@ -1135,6 +1149,13 @@ body {
   text-align: center;
 }
 
+.implantacao__map {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .implantacao__image {
   width: 100%;
   max-width: 900px;
@@ -1142,7 +1163,29 @@ body {
   border-radius: 8px;
   border: 1px solid var(--color-border);
   margin-bottom: var(--space-lg);
-  transform: scaleX(-1);
+  transform: scaleX(1);
+}
+
+.implantacao__marker {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgba(139, 105, 20, 0.95);
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  cursor: default;
+  touch-action: auto;
+  user-select: none;
 }
 
 .implantacao__note {
@@ -1169,6 +1212,12 @@ body {
   break-inside: avoid;
   color: var(--color-text);
   font-size: 0.9375rem;
+  transition: color var(--duration), font-weight var(--duration);
+}
+
+.implantacao__legend li.is-highlight {
+  color: var(--color-accent);
+  font-weight: 600;
 }
 
 .implantacao__cta {
