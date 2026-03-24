@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initSmoothScroll();
   initCarousel();
+  initLightbox();
   initImplantacaoEditor();
 });
 
@@ -175,6 +176,129 @@ function initCarousel() {
   prevBtn?.addEventListener('click', () => goTo(currentIndex - 1));
   nextBtn?.addEventListener('click', () => goTo(currentIndex + 1));
   dots.forEach((d) => d.addEventListener('click', () => goTo(parseInt(d.dataset.index, 10))));
+}
+
+/**
+ * Lightbox: zoom nas perspectivas (carrossel) e nas plantas
+ */
+function initLightbox() {
+  const lightbox = document.getElementById('gallery-lightbox');
+  if (!lightbox) return;
+
+  const imgEl = document.getElementById('gallery-lightbox-img');
+  const captionEl = document.getElementById('gallery-lightbox-caption');
+  const backdrop = lightbox.querySelector('.gallery-lightbox__backdrop');
+  const closeBtn = lightbox.querySelector('.gallery-lightbox__close');
+  const prevBtn = lightbox.querySelector('.gallery-lightbox__nav--prev');
+  const nextBtn = lightbox.querySelector('.gallery-lightbox__nav--next');
+
+  if (!imgEl || !captionEl) return;
+
+  let mode = 'gallery';
+  let galleryItems = [];
+  let galleryIndex = 0;
+
+  function close() {
+    lightbox.setAttribute('hidden', '');
+    lightbox.classList.remove('gallery-lightbox--single');
+    document.body.style.overflow = '';
+    imgEl.style.transform = '';
+  }
+
+  function showGallerySlide() {
+    const item = galleryItems[galleryIndex];
+    if (!item) return;
+    imgEl.src = item.src;
+    imgEl.alt = item.alt;
+    captionEl.textContent = item.caption;
+    imgEl.style.transform = '';
+  }
+
+  function openGallery(items, index) {
+    mode = 'gallery';
+    galleryItems = items;
+    galleryIndex = Math.max(0, Math.min(index, items.length - 1));
+    lightbox.classList.remove('gallery-lightbox--single');
+    showGallerySlide();
+    lightbox.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function openSingle(src, alt, caption, rotateDeg) {
+    mode = 'single';
+    lightbox.classList.add('gallery-lightbox--single');
+    imgEl.src = src;
+    imgEl.alt = alt || '';
+    captionEl.textContent = caption || '';
+    imgEl.style.transform = rotateDeg ? `rotate(${rotateDeg}deg)` : '';
+    lightbox.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function galleryPrev() {
+    if (mode !== 'gallery' || !galleryItems.length) return;
+    galleryIndex = (galleryIndex - 1 + galleryItems.length) % galleryItems.length;
+    showGallerySlide();
+  }
+
+  function galleryNext() {
+    if (mode !== 'gallery' || !galleryItems.length) return;
+    galleryIndex = (galleryIndex + 1) % galleryItems.length;
+    showGallerySlide();
+  }
+
+  const carousel = document.querySelector('.carousel');
+  if (carousel) {
+    const slides = carousel.querySelectorAll('.carousel__slide');
+    const items = Array.from(slides).map((slide) => {
+      const im = slide.querySelector('img');
+      const cap = slide.querySelector('.carousel__caption');
+      return {
+        src: im?.getAttribute('src') || '',
+        alt: im?.getAttribute('alt') || '',
+        caption: cap?.textContent?.trim() || ''
+      };
+    }).filter((it) => it.src);
+
+    slides.forEach((slide, i) => {
+      const im = slide.querySelector('img');
+      if (!im) return;
+      im.style.cursor = 'zoom-in';
+      im.addEventListener('click', (e) => {
+        e.preventDefault();
+        openGallery(items, i);
+      });
+    });
+  }
+
+  document.querySelectorAll('.planta-card__zoom').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const rotate = btn.dataset.rotate ? parseInt(btn.dataset.rotate, 10) : 0;
+      openSingle(btn.dataset.src || '', btn.dataset.alt || '', btn.dataset.caption || '', rotate);
+    });
+  });
+
+  backdrop?.addEventListener('click', close);
+  closeBtn?.addEventListener('click', close);
+  prevBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    galleryPrev();
+  });
+  nextBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    galleryNext();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.hasAttribute('hidden')) return;
+    if (e.key === 'Escape') {
+      close();
+      return;
+    }
+    if (mode !== 'gallery') return;
+    if (e.key === 'ArrowLeft') galleryPrev();
+    if (e.key === 'ArrowRight') galleryNext();
+  });
 }
 
 /**

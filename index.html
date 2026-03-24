@@ -22,7 +22,7 @@
   <!-- Header -->
   <header class="header" id="header">
     <div class="header__inner">
-      <a href="#home" class="header__logo"><img src="images/connect%20s%20fundo.png" alt="Connect Penha"></a>
+      <a href="#home" class="header__logo"><img src="logo%20connect%20preto.png" alt="Connect Penha"></a>
       <nav class="nav" aria-label="Menu principal">
         <ul class="nav__list">
           <li><a href="#home">Home</a></li>
@@ -62,10 +62,8 @@
           </div>
           <div class="hero__block hero__block--valor">
             <span class="hero__block-label">Renda familiar</span>
-            <div class="hero__block-value-row">
-              <span class="hero__block-value">R$ 10mil</span>
-              <span class="hero__block-small">a partir de</span>
-            </div>
+            <span class="hero__block-small hero__block-small--apartir">a partir de</span>
+            <span class="hero__block-value">R$ 10mil</span>
           </div>
         </div>
         </div>
@@ -88,7 +86,7 @@
           <article class="feature-card">
             <span class="feature-card__label">2 Dorms / 1 Suíte</span>
             <h3 class="feature-card__title">Plantas otimizadas</h3>
-            <p class="feature-card__text">Apartamentos de 2 dormitórios e 1 suíte com plantas otimizadas de 51 a 59m², com ou sem vaga.</p>
+            <p class="feature-card__text">Apartamentos de 2 dormitórios e 1 suíte com plantas otimizadas de 51 a 59m², com vaga.</p>
           </article>
           <article class="feature-card">
             <span class="feature-card__label">Até 15º andar</span>
@@ -137,13 +135,11 @@
     <section class="connect">
       <div class="container">
         <div class="connect__header">
-          <h2 class="section-title section-title--light">Connect</h2>
           <p class="connect__intro">Localizado em uma das regiões mais tradicionais e bem conectadas da zona leste de São Paulo, ele oferece plantas funcionais, áreas de lazer completas e uma vista permanente incrível.</p>
         </div>
         <div class="connect__mobilidade">
-          <h3 class="connect__headline">A apenas 150m, um futuro de mais mobilidade</h3>
+          <h3 class="connect__headline">A apenas 150m da estação Metrô Penha, um futuro de mais mobilidade com futura conexão com a Linha Verde</h3>
           <p class="connect__mobilidade-text">Se contar com uma linha de metrô ao seu lado já faz a diferença, imagine duas. Em breve, a Estação Penha estará conectada à Linha Verde e chegar ao eixo da Paulista vai ficar ainda mais fácil e rápido para quem precisa acessar a região. É mais praticidade para o seu cotidiano e valorização de uma região já reconhecida pela sua qualidade de vida.</p>
-          <p class="connect__address"><strong>Rua Aquilino Vidal, 146 – Penha</strong><br> A 150m da Estação Penha do Metrô (futura conexão com a Linha Verde)</p>
         </div>
         <div class="connect__proximidades">
           <h4 class="connect__proximidades-title">Tudo pertinho</h4>
@@ -213,7 +209,7 @@
               </ul>
             </div>
           </div>
-          <p class="proximidade-footer">Tempos aproximados • <em>de carro</em> quando não indicado</p>
+          <p class="proximidade-footer">Tempos aproximados • <em>de carro</em> quando não indicado • Fonte: Google Maps</p>
         </div>
       </div>
     </section>
@@ -255,21 +251,53 @@
         <h2 class="section-title">Plantas</h2>
         <div class="plantas__grid">
           <div class="planta-card">
-            <div class="planta-card__image planta-card__image--53"></div>
-            <div class="planta-card__content">
-              <span class="planta-card__tipo">2 Dorms. (Suíte)</span>
-              <span class="planta-card__size">53m²</span>
-              <span class="planta-card__vaga">com ou sem vaga</span>
-              <a href="#contato" class="btn btn--outline">Ver detalhes</a>
+            <div class="planta-card__image planta-card__image--53">
+              <button type="button" class="btn btn--outline planta-card__zoom"
+                data-src="images/plantas/53m.jpg"
+                data-alt="Planta 53m²"
+                data-caption="Planta 53m² · 2 Dorms. (Suíte) · com vaga"
+                data-rotate="180">Ver detalhes</button>
+            </div>
+            <div class="planta-card__details">
+              <div class="planta-card__content">
+                <span class="planta-card__tipo">2 Dorms. (Suíte)</span>
+                <span class="planta-card__size">53m²</span>
+                <span class="planta-card__vaga">com vaga</span>
+              </div>
+              <div class="planta-card__diferenciais">
+                <h3 class="planta-card__diferenciais-title">Diferenciais</h3>
+                <ul class="plantas__diferenciais-list">
+                  <li>Chuveiro a gás</li>
+                  <li>Ponto para ar-condicionado na sala e nos dormitórios</li>
+                  <li>Torneira quente na cozinha e nos banheiros</li>
+                  <li>Piso laminado nos quartos</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="planta-card">
-            <div class="planta-card__image planta-card__image--57"></div>
-            <div class="planta-card__content">
-              <span class="planta-card__tipo">2 Dorms. (Suíte)</span>
-              <span class="planta-card__size">57m²</span>
-              <span class="planta-card__vaga">1 vaga</span>
-              <a href="#contato" class="btn btn--outline">Ver detalhes</a>
+            <div class="planta-card__image planta-card__image--57">
+              <button type="button" class="btn btn--outline planta-card__zoom"
+                data-src="images/plantas/57m.jpg"
+                data-alt="Planta 57m²"
+                data-caption="Planta 57m² · 2 Dorms. (Suíte) · 1 vaga"
+                data-rotate="180">Ver detalhes</button>
+            </div>
+            <div class="planta-card__details">
+              <div class="planta-card__content">
+                <span class="planta-card__tipo">2 Dorms. (Suíte)</span>
+                <span class="planta-card__size">57m²</span>
+                <span class="planta-card__vaga">1 vaga</span>
+              </div>
+              <div class="planta-card__diferenciais">
+                <h3 class="planta-card__diferenciais-title">Diferenciais</h3>
+                <ul class="plantas__diferenciais-list">
+                  <li>Chuveiro a gás</li>
+                  <li>Ponto para ar-condicionado na sala e nos dormitórios</li>
+                  <li>Torneira quente na cozinha e nos banheiros</li>
+                  <li>Piso laminado nos quartos</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -342,6 +370,7 @@
         </div>
         <div class="localizacao__address">
           <strong>Rua Aquilino Vidal, 146 – Penha, São Paulo</strong><br>
+          Plantão de vendas na mesma rua, número 210.<br>
           A 150 metros da estação de metrô Penha
         </div>
       </div>
@@ -483,7 +512,7 @@
     <div class="container">
       <div class="footer__content">
         <div class="footer__brand">
-          <a href="#home" class="footer__logo"><img src="images/connect%20s%20fundo.png" alt="Connect Penha"></a>
+          <a href="#home" class="footer__logo"><img src="logo%20connect%20preto.png" alt="Connect Penha"></a>
         </div>
         <div class="footer__zimba">
           <p class="footer__zimba-text">Fundada em 2010, a Zimba é especializada no desenvolvimento de empreendimentos de alto padrão, com atuação nos segmentos residencial, logístico, industrial e comercial.</p>
@@ -516,7 +545,7 @@
         </nav>
       </div>
       <div class="footer__bottom">
-        <p>© 2026 <span class="footer__logo-inline"><img src="images/connect%20s%20fundo.png" alt="Connect Penha"></span></p>
+        <p>© 2026 <span class="footer__logo-inline"><img src="logo%20connect%20preto.png" alt="Connect Penha"></span></p>
         <p>Criado por Cia 360</p>
       </div>
       <a href="https://wa.me/5511950890003" target="_blank" rel="noopener" class="footer__cta footer__cta--whatsapp" aria-label="Fale com o corretor no WhatsApp">
@@ -524,6 +553,18 @@
       </a>
     </div>
   </footer>
+
+  <!-- Zoom / lightbox das perspectivas -->
+  <div class="gallery-lightbox" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Imagem em destaque" hidden>
+    <button type="button" class="gallery-lightbox__backdrop" aria-label="Fechar"></button>
+    <div class="gallery-lightbox__inner">
+      <button type="button" class="gallery-lightbox__close" aria-label="Fechar">&times;</button>
+      <button type="button" class="gallery-lightbox__nav gallery-lightbox__nav--prev" aria-label="Imagem anterior">‹</button>
+      <img src="" alt="" class="gallery-lightbox__img" id="gallery-lightbox-img">
+      <button type="button" class="gallery-lightbox__nav gallery-lightbox__nav--next" aria-label="Próxima imagem">›</button>
+      <p class="gallery-lightbox__caption" id="gallery-lightbox-caption"></p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
